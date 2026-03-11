@@ -19,6 +19,22 @@ TrackTracks tells you exactly which track and which plugin is killing your CPU, 
 
 ---
 
+## Why Not Just Use Ableton's CPU Meter?
+
+Ableton's meter shows one number: total load. It tells you the house is on fire. It doesn't tell you which room.
+
+| | Ableton CPU Meter | TrackTracks |
+|---|---|---|
+| Total session load | ✅ | ✅ |
+| Per-track breakdown | ❌ | ✅ |
+| Per-plugin breakdown | ❌ | ✅ |
+| 18-second history | ❌ | ✅ |
+| Peak hold marker | ❌ | ✅ |
+| Alert when threshold hit | ❌ | ✅ |
+| Runs outside Ableton | — | ✅ |
+
+---
+
 ## How It Works
 
 ```
