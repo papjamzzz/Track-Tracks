@@ -19,8 +19,7 @@ def create_instance(c_instance):
 
 class TrackCpuMonitor:
     def __init__(self, c_instance):
-        self._c    = c_instance
-        self._song = c_instance.song()
+        self._c      = c_instance
         self._active = True
 
         try:
@@ -101,25 +100,28 @@ class TrackCpuMonitor:
         if self._sock is None:
             return
 
+        # Always get a fresh song reference — handles set changes mid-session
+        song = self._c.song()
+
         # song metadata
         try:
-            bpm = round(float(self._song.tempo), 2)
+            bpm = round(float(song.tempo), 2)
         except Exception:
             bpm = 0.0
         try:
-            playing = bool(self._song.is_playing)
+            playing = bool(song.is_playing)
         except Exception:
             playing = False
         try:
-            sig_n = int(self._song.signature_numerator)
-            sig_d = int(self._song.signature_denominator)
+            sig_n = int(song.signature_numerator)
+            sig_d = int(song.signature_denominator)
         except Exception:
             sig_n, sig_d = 4, 4
 
         # master track CPU
         master_cpu = 0.0
         try:
-            for dev in self._song.master_track.devices:
+            for dev in song.master_track.devices:
                 try:
                     master_cpu += float(dev.cpu_load) * 100.0
                 except AttributeError:
@@ -135,8 +137,8 @@ class TrackCpuMonitor:
                 "sig_den":    sig_d,
                 "master_cpu": round(master_cpu, 2),
             },
-            "tracks":  [self._serialize_track(t)               for t in self._song.tracks],
-            "returns": [self._serialize_track(t, is_return=True) for t in self._song.return_tracks],
+            "tracks":  [self._serialize_track(t)               for t in song.tracks],
+            "returns": [self._serialize_track(t, is_return=True) for t in song.return_tracks],
         }).encode("utf-8")
 
         try:
