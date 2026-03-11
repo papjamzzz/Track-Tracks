@@ -923,11 +923,22 @@ class MainWindow(QMainWindow):
 
         n = len(tracks)
         r = len(returns)
-        self._status.setText(
-            f"{n} track{'s' if n!=1 else ''}"
-            + (f"  +  {r} return{'s' if r!=1 else ''}" if r else "")
-            + "   ·   Space=freeze   T=pin   E=export   Esc=clear alerts"
-        )
+        if n == 0:
+            self._status.setText(
+                "● Connected — no tracks visible. Open a session in Ableton with tracks."
+            )
+            self._status.setStyleSheet(
+                f"background:{BG2}; color:#ffb74d; padding:2px 10px;"
+            )
+        else:
+            self._status.setText(
+                f"{n} track{'s' if n!=1 else ''}"
+                + (f"  +  {r} return{'s' if r!=1 else ''}" if r else "")
+                + "   ·   Space=freeze   T=pin   E=export   Esc=clear alerts"
+            )
+            self._status.setStyleSheet(
+                f"background:{BG2}; color:{TXT_M}; padding:2px 10px;"
+            )
 
     def _sync_rows(self, tracks: list, rows: dict, layout: QVBoxLayout):
         incoming = {t["name"] for t in tracks}

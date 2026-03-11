@@ -2,6 +2,8 @@
 
 > **Finally know which track is killing your session.**
 
+![TrackTracks viewer](assets/screenshots/viewer.png)
+
 Real-time per-track and per-device CPU monitoring for Ableton Live 12 on macOS. When your session is spiking and Ableton's single CPU meter tells you nothing, TrackTracks tells you exactly which track and which plugin is the culprit.
 
 ![TrackTracks Logo](assets/tracktracks_logo.png)
