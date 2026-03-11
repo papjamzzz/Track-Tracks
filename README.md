@@ -1,11 +1,20 @@
 # TrackTracks — Per-Track CPU Monitor for Ableton Live 12
 
-Real-time per-track and per-device CPU monitoring for Ableton Live 12 on macOS.
+> **Finally know which track is killing your session.**
+
+Real-time per-track and per-device CPU monitoring for Ableton Live 12 on macOS. When your session is spiking and Ableton's single CPU meter tells you nothing, TrackTracks tells you exactly which track and which plugin is the culprit.
 
 ![TrackTracks Logo](assets/tracktracks_logo.png)
 
+---
+
 ## The Problem
-Ableton's built-in CPU meter shows total load — but when 15 tracks are running and your session is grinding, which one is the culprit? TrackTracks tells you exactly which track and which plugin is killing your CPU, in real time.
+
+Ableton's built-in CPU meter shows total load — but when 15 tracks are running and your session is grinding, which one is the culprit? You freeze tracks at random, bounce things down, and still can't find the spike.
+
+TrackTracks tells you exactly which track and which plugin is killing your CPU, in real time.
+
+---
 
 ## How It Works
 
@@ -19,7 +28,10 @@ TrackTracks Viewer (PyQt6 desktop app)
   live sparkline bars, peak hold, per-device drill-down
 ```
 
+---
+
 ## Features
+
 - **Sparkline history bars** — 18-second rolling CPU history per track
 - **Smooth 60fps animation** with peak-hold tick marker (5-second window)
 - **Per-device breakdown** — click ▶ to expand and see every plugin's CPU
@@ -35,11 +47,16 @@ TrackTracks Viewer (PyQt6 desktop app)
 - **Return tracks** section
 - Keyboard shortcuts: `Space` freeze · `T` pin · `E` export · `Esc` clear alerts
 
+---
+
 ## Requirements
+
 - macOS (Apple Silicon)
 - Ableton Live 12 Suite (or any edition)
-- Python 3.9+ (system Python works)
+- Python 3.9+
 - PyQt6, psutil
+
+---
 
 ## Installation
 
@@ -91,6 +108,8 @@ cp build/launcher.sh "$APP/Contents/MacOS/TrackTracks"
 chmod +x "$APP/Contents/MacOS/TrackTracks"
 ```
 
+---
+
 ## Project Structure
 
 ```
@@ -108,9 +127,18 @@ track_cpu_monitor/
     └── launcher.sh
 ```
 
+---
+
 ## Architecture Notes
 
 Ableton Live exposes `device.cpu_load` (0.0–1.0) on every device object through its Python Remote Script API. The remote script reads this for all devices on all tracks every 200ms and streams a JSON payload over UDP to localhost. The viewer receives it, smoothly animates the bars at 60fps, and handles sorting, filtering, and alerts entirely in the display layer.
 
+---
+
 ## License
+
 MIT
+
+---
+
+*Built for producers who need to know, not guess.*
