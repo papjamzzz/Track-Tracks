@@ -161,3 +161,12 @@ MIT
 ---
 
 *Built for producers who need to know, not guess.*
+
+
+---
+
+## Part of Creative Konsoles
+
+Built by [Creative Konsoles](https://creativekonsoles.com) — tools built using thought.
+
+**[creativekonsoles.com](https://creativekonsoles.com)** &nbsp;·&nbsp; support@creativekonsoles.com
