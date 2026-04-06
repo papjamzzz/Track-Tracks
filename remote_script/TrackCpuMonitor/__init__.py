@@ -32,8 +32,19 @@ class TrackCpuMonitor:
 
     # ── scheduling ────────────────────────────────────────────────────────────
     def _schedule(self):
-        if self._active:
+        if not self._active:
+            return
+        # schedule_message was removed from c_instance in Live 12.3.6+
+        try:
             self._c.schedule_message(POLL_MS, self._poll)
+            return
+        except AttributeError:
+            pass
+        try:
+            import Live
+            Live.Application.get_application().schedule_message(POLL_MS, self._poll)
+        except Exception:
+            pass
 
     def _poll(self):
         if not self._active:
